@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import GoalForm from "./components/GoalForm";
+import GoalList from "./components/GoalList";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [goals, setGoals] = useState([]);
+  const [background, setBackground] = useState(null);
+
+  function addGoalHandler(text) {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+
+    setGoals((prev) => [
+      { id: crypto.randomUUID(), text: trimmed },
+      ...prev,
+    ]);
+  }
+
+  function backgroundHandler(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setBackground(reader.result);
+    };
+    reader.readAsDataURL(file);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+    <div
+      className="app"
+      style={{
+        backgroundImage: background ? `url(${background})` : "none",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <h1>Objectifs de vie</h1>
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={backgroundHandler}
+        />
+
+        <GoalForm onAddGoal={addGoalHandler} />
+        <GoalList goals={goals} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
