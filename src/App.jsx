@@ -49,21 +49,24 @@ export default function App() {
         <WelcomeModal onPickBackground={backgroundHandler} onSkip={skipWelcome} />
       )}
 
-      <div className="card">
-        <div className="card-header">
-          <h1>Objectifs de vie</h1>
+    <div className="card">
+      <h1>Objectifs de vie</h1>
 
-          {background && (
-            <label className="file-button">
-              {background ? "Modifier le fond" : "Mettre un fond d’écran"}
-              <input type="file" accept="image/*" onChange={backgroundHandler} hidden />
-            </label>
-          )}
-        </div>
-
-        <GoalForm onAddGoal={addGoalHandler} />
-        <GoalList goals={goals} onDeleteGoal={deleteGoalHandler} />
+      <div className="toolbar">
+        <label className="file-button">
+          {background ? "Modifier le fond" : "Mettre un fond d’écran"}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={backgroundHandler}
+            hidden
+          />
+        </label>
       </div>
+
+      <GoalForm onAddGoal={addGoalHandler} />
+      <GoalList goals={goals} onDeleteGoal={deleteGoalHandler} />
+    </div>
     </div>
   );
 }

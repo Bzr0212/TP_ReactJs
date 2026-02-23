@@ -215,3 +215,19 @@ button:active {
 .secondary {
   background: rgba(255, 255, 255, 0.08);
 }
+
+.toolbar {
+  margin: 12px 0 18px;
+  display: flex;
+  align-items: center;
+}
+
+.file-button {
+  height: 34px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
