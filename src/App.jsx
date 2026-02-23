@@ -27,6 +27,10 @@ export default function App() {
     reader.readAsDataURL(file);
   }
 
+  function deleteGoalHandler(id) {
+  setGoals((prev) => prev.filter((g) => g.id !== id));
+  }
+
   return (
     <div
       className="app"
@@ -51,7 +55,7 @@ export default function App() {
           </label>
         </div>
         <GoalForm onAddGoal={addGoalHandler} />
-        <GoalList goals={goals} />
+        <GoalList goals={goals} onDeleteGoal={deleteGoalHandler} />
       </div>
     </div>
   );

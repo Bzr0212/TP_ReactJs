@@ -160,3 +160,16 @@ button:active {
 .file-button:hover {
   background: rgba(255, 255, 255, 0.22);
 }
+
+.goal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.delete-btn {
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-weight: 700;
+}
