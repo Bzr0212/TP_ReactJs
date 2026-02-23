@@ -39,12 +39,17 @@ export default function App() {
       <div className="card">
         <h1>Objectifs de vie</h1>
 
-        <input
-          type="file"
-          accept="image/*"
-          onChange={backgroundHandler}
-        />
-
+        <div className="file-row">
+          <label className="file-button">
+            Changer le fond
+            <input
+              type="file"
+              accept="image/*"
+              onChange={backgroundHandler}
+              hidden
+            />
+          </label>
+        </div>
         <GoalForm onAddGoal={addGoalHandler} />
         <GoalList goals={goals} />
       </div>
